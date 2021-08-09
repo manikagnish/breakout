@@ -1,5 +1,13 @@
 :root {
   --clr-primary: hsl(240, 54%, 48%);
+  --clr-background: hsl(355, 100%, 69%);
+  --clr-background-gradient-1: hsl(35, 100%, 72%);
+  --clr-background-gradient-2: hsl(355, 100%, 69%);
+  --clr-canvas: hsla(0, 0%, 100%, 0.863);
+  --clr-white: hsl(0, 0%, 98%);
+  --clr-black: hsl(0, 0%, 10%);
+  --clr-black-light: hsl(0, 0%, 13%);
+  --clr-black-lighter: hsl(0, 0%, 20%);
 }
 
 * {
@@ -10,9 +18,100 @@
 
 html {
   font-size: 62.5%;
+  box-sizing: border-box;
 }
 
 body {
+  /* for text */
   font-size: 1.6rem;
-  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--clr-white);
+
+  /* for background */
+  background: var(--clr-background);
+  background: -webkit-linear-gradient(
+    to right,
+    var(--clr-background-gradient-1),
+    clr(--background-gradient-2)
+  );
+  background: linear-gradient(
+    to right,
+    var(--clr-background-gradient-1),
+    var(--clr-background-gradient-2)
+  );
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  /* for display  */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 4.5rem;
+  margin-bottom: 2rem;
+}
+
+h2 {
+  margin-bottom: 1rem;
+}
+
+canvas {
+  background-color: var(--clr-canvas);
+  backdrop-filter: saturate(180%) blur(2rem);
+  border-radius: 5px;
+  display: block;
+}
+
+.btn {
+  cursor: pointer;
+  border: 0;
+  padding: 1rem 2rem;
+  background-color: var(--clr-black);
+  color: var(--clr-white);
+  border-radius: 5px;
+  transition: all 0.2s;
+}
+
+.btn:focus {
+  outline: 0;
+}
+
+.btn:hover {
+  background-color: var(--clr-black-light);
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.rules-btn {
+  position: absolute;
+  top: 3rem;
+  left: 3rem;
+}
+
+#close-btn {
+  margin-top: 5px;
+}
+
+.rules {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  background-color: var(--clr-black-lighter);
+  min-height: 100vh;
+  width: 40rem;
+  padding: 2rem;
+  line-height: 1.5;
+  transform: translateX(-40rem);
+  transition: all 1s ease-in-out;
+}
+
+.rules.show {
+  transform: translateX(0);
 }
