@@ -1,6 +1,6 @@
 :root {
-  --clr-background: hsl(355, 100%, 69%);
   --clr-background: hsl(226, 100%, 69%);
+  --clr-background: hsl(355, 100%, 69%);
   --clr-background-gradient-1: hsl(35, 100%, 72%);
   --clr-background-gradient-2: hsl(355, 100%, 69%);
   --clr-canvas: hsla(0, 0%, 100%, 0.863);

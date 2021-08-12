@@ -90,7 +90,7 @@ function drawPaddle() {
 // draw score on canvas
 function drawPlayerInfo() {
   ctx.font = '14px Arial';
-  ctx.fillStyle = '#32B399';
+  ctx.fillStyle = 'hsla(355, 100%, 69%, 0.8)';
   ctx.fillText(`Score: ${score}`, canvas.width - 100, 30);
   ctx.fillText(`highscore: ${highscore}`, canvas.width - 250, 30);
   ctx.fillText(`Name: ${nameOfPlayer}`, canvas.width - 750, 30);
