@@ -1,6 +1,7 @@
 :root {
   --clr-primary: hsl(240, 54%, 48%);
   --clr-background: hsl(355, 100%, 69%);
+  --clr-background: hsl(226, 100%, 69%);
   --clr-background-gradient-1: hsl(35, 100%, 72%);
   --clr-background-gradient-2: hsl(355, 100%, 69%);
   --clr-canvas: hsla(0, 0%, 100%, 0.863);
@@ -178,6 +179,12 @@ label {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 9999999999;
+}
+
+.welcome-el {
+  color: var(--clr-background);
+  font-size: 1.8rem;
+  margin-bottom: 3rem;
 }
 
 .hidden {

@@ -8,6 +8,8 @@ const startGameCard = document.querySelector('.start-game-card');
 const playerName = document.getElementById('name');
 
 let score = 0;
+let highscore = 0;
+let nameOfPlayer = 'Buttface';
 
 const brickRowCount = 9;
 const brickColumnCount = 5;
@@ -53,6 +55,17 @@ for (let i = 0; i < brickRowCount; i++) {
   }
 }
 
+const nameLabel = document.getElementById('name-label');
+const welcomeEl = document.querySelector('.welcome-el');
+const getStoredName = localStorage.getItem('PlayerName');
+
+if (getStoredName === null) {
+  nameLabel.classList.remove('hidden');
+} else {
+  welcomeEl.classList.remove('hidden');
+  welcomeEl.innerHTML = `Welcome back, ${getStoredName}!`;
+}
+
 // Draw ball on canvas
 function drawBall() {
   ctx.beginPath();
@@ -72,9 +85,13 @@ function drawPaddle() {
 }
 
 // draw score on canvas
-function drawScore() {
-  ctx.font = '20px Arial';
+function drawPlayerInfo() {
+  ctx.font = '14px Arial';
+  ctx.fillStyle = 'steelblue';
   ctx.fillText(`Score: ${score}`, canvas.width - 100, 30);
+  ctx.fillText(`highscore: ${highscore}`, canvas.width - 250, 30);
+  ctx.fillText(`Name: ${nameOfPlayer}`, canvas.width - 750, 30);
+  ctx.fill();
 }
 
 // draw bricks on canvas
@@ -176,7 +193,7 @@ function draw() {
 
   drawBall();
   drawPaddle();
-  drawScore();
+  drawPlayerInfo();
   drawBricks();
 }
 
@@ -193,11 +210,19 @@ function update() {
 
 startGameBtn.addEventListener('click', e => {
   e.preventDefault();
-  if (playerName.value === '') {
+  if (playerName.value === '' && getStoredName === null) {
     alert("You did not enter a name so your default name is 'Buttface'");
   }
+  if (playerName.value !== '') {
+    nameOfPlayer = playerName.value;
+    localStorage.setItem('PlayerName', nameOfPlayer);
+  }
+  if (getStoredName !== null) {
+    nameOfPlayer = getStoredName;
+  }
+
   startGameCard.classList.add('hidden');
-  setTimeout(update, 2000);
+  setTimeout(update, 2500);
   function dot1() {
     document.getElementById('loading').innerHTML = `Starting.`;
   }
@@ -213,7 +238,7 @@ startGameBtn.addEventListener('click', e => {
 
   setTimeout(function () {
     document.getElementById('loading').innerHTML = '';
-  }, 2000);
+  }, 2500);
 });
 
 // keydown Event
