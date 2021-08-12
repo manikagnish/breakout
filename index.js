@@ -1,6 +1,7 @@
 if (window.innerWidth < 900) {
-  document.querySelector('body').innerHTML =
-    'Open on desktop for best experience. Mobile version in works.';
+  document.querySelector(
+    'body'
+  ).innerHTML = `<p>Open on desktop for best experience.</p> <p>OR</p> <p></p></p>Maximize the screen and refresh if already on desktop.<p> Mobile version in works.</p>`;
 } else {
   const rulesBtn = document.getElementById('rules-btn');
   const closeBtn = document.getElementById('close-btn');
@@ -209,9 +210,9 @@ if (window.innerWidth < 900) {
         document.getElementById('lost-para').classList.remove('hidden');
         background.classList.remove('hidden');
         content.classList.add('hidden');
-        paddleMusic.stop();
-        brickMusic.stop();
-        lostMusic.stop();
+        paddleMusic.muted();
+        brickMusic.muted();
+        lostMusic.muted();
       }
       if (lostCount > 2) {
         showAllBricks();
@@ -232,9 +233,9 @@ if (window.innerWidth < 900) {
       document.getElementById('congo-para').classList.remove('hidden');
       background.classList.remove('hidden');
       content.classList.add('hidden');
-      paddleMusic.stop();
-      brickMusic.stop();
-      lostMusic.stop();
+      paddleMusic.muted();
+      brickMusic.muted();
+      lostMusic.muted();
     }
   }
 

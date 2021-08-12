@@ -100,13 +100,13 @@ canvas {
   position: absolute;
   /* top: 8rem;
   left: 3rem; */
-  top: 3rem;
+  top: 3.5rem;
   right: 3rem;
   cursor: pointer;
   border: 0;
   background-color: transparent;
   color: var(--clr-white);
-  font-weight: bold;
+  /* font-weight: bold; */
   font-size: 1.8rem;
   transition: all 0.2s ease;
 }
@@ -274,6 +274,7 @@ label {
   padding: 5px 3rem;
   color: var(--clr-background);
   cursor: pointer;
+  margin-left: 4px;
 }
 
 .level-label select:focus {
