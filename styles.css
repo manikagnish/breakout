@@ -1,5 +1,4 @@
 :root {
-  --clr-primary: hsl(240, 54%, 48%);
   --clr-background: hsl(355, 100%, 69%);
   --clr-background: hsl(226, 100%, 69%);
   --clr-background-gradient-1: hsl(35, 100%, 72%);
@@ -134,6 +133,10 @@ canvas {
 }
 
 .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
 
@@ -164,7 +167,7 @@ canvas {
 }
 
 .congo-para {
-  margin-bottom: 3rem;
+  /* margin-bottom: 3rem; */
 }
 
 label {
@@ -175,7 +178,7 @@ label {
   font-size: 1.8rem;
   border: 0;
   border-bottom: 1px solid var(--clr-grey-light);
-  margin-bottom: 4rem;
+  /* margin-bottom: 4rem; */
   width: 80%;
   outline: 0;
   color: var(--clr-grey);
@@ -190,6 +193,7 @@ label {
   color: var(--clr-white);
   font-weight: bold;
   font-size: 1.8rem;
+  margin-top: 3rem;
   transition: all 0.3s;
 }
 
@@ -218,7 +222,30 @@ label {
 .welcome-el {
   color: var(--clr-background);
   font-size: 1.8rem;
-  margin-bottom: 3rem;
+  /* margin-bottom: 3rem; */
+}
+
+.level-label {
+  margin-top: 1.5rem;
+  color: var(--clr-background);
+}
+
+.level-label select {
+  border: 1px solid var(--clr-grey-light);
+  padding: 5px 3rem;
+  color: var(--clr-background);
+}
+
+.level-label select:focus {
+  outline: 0;
+}
+
+.level-label select option {
+  text-align: left;
+}
+
+.choose-level {
+  color: var(--clr-grey-light);
 }
 
 .hidden {

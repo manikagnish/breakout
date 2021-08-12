@@ -10,6 +10,9 @@ const playAgainBtn = document.getElementById('play-again-btn');
 const congo = document.querySelector('.congo');
 const background = document.querySelector('.background');
 const content = document.querySelector('.content');
+const selectedLevel = document.getElementById('selected-level');
+
+let ballSpeed = parseInt(selectedLevel.value);
 
 let score = 0;
 let highscore = 0;
@@ -19,14 +22,7 @@ const brickRowCount = 9;
 const brickColumnCount = 5;
 
 // Create ball props
-const ball = {
-  x: canvas.width / 2,
-  y: canvas.height / 2,
-  size: 10,
-  speed: 4,
-  dx: 4,
-  dy: -4,
-};
+let ball;
 
 // Create paddle props
 const paddle = {
@@ -246,6 +242,7 @@ startGameBtn.addEventListener('click', e => {
   }
 
   startGameCard.classList.add('hidden');
+
   setTimeout(update, 2500);
   function dot1() {
     document.getElementById('loading').innerHTML = `Starting.`;
@@ -263,6 +260,19 @@ startGameBtn.addEventListener('click', e => {
   setTimeout(function () {
     document.getElementById('loading').innerHTML = '';
   }, 2500);
+});
+
+selectedLevel.addEventListener('click', () => {
+  ballSpeed = parseInt(selectedLevel.value);
+  ball = {
+    x: canvas.width / 2,
+    y: canvas.height / 2,
+    size: 10,
+    speed: ballSpeed,
+    dx: 4,
+    dy: -4,
+  };
+  highscore = 0;
 });
 
 // keydown Event
