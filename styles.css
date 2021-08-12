@@ -1,5 +1,5 @@
 :root {
-  --clr-background: hsl(226, 100%, 69%);
+  --clr-background-blue: hsl(226, 100%, 69%);
   --clr-background: hsl(355, 100%, 69%);
   --clr-background-gradient-1: hsl(35, 100%, 72%);
   --clr-background-gradient-2: hsl(355, 100%, 69%);
@@ -94,6 +94,33 @@ canvas {
   position: absolute;
   top: 3rem;
   left: 3rem;
+}
+
+.menu-btn {
+  position: absolute;
+  /* top: 8rem;
+  left: 3rem; */
+  top: 3rem;
+  right: 3rem;
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
+  color: var(--clr-white);
+  font-weight: bold;
+  font-size: 1.8rem;
+  transition: all 0.2s ease;
+}
+
+.menu-btn:focus {
+  outline: 0;
+}
+
+/* .menu-btn:hover {
+  transform: translateY(-1px);
+} */
+
+.menu-btn:active {
+  transform: translateX(2.5px);
 }
 
 #close-btn {
@@ -206,6 +233,7 @@ label {
   font-size: 1.8rem;
   margin-top: 3rem;
   transition: all 0.3s;
+  cursor: pointer;
 }
 
 .start-game-btn:focus {
@@ -245,6 +273,7 @@ label {
   border: 1px solid var(--clr-grey-light);
   padding: 5px 3rem;
   color: var(--clr-background);
+  cursor: pointer;
 }
 
 .level-label select:focus {

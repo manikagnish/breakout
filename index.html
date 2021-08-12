@@ -15,21 +15,41 @@
     <script src="index.js" defer></script>
   </head>
   <body>
+    <audio id="brick-music">
+      <source src="break.mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="paddle-music">
+      <source src="boing.mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="lost-music">
+      <source src="gameover.mp3" type="audio/mpeg" />
+    </audio>
     <h1>Breakout!</h1>
     <button id="rules-btn" class="btn rules-btn">Show Rules</button>
+    <button id="menu-btn" class="btn-2 menu-btn">back to menu &#8594;</button>
     <div id="rules" class="rules">
       <h2>How To Play:</h2>
       <p>
         Use your right and left keys to move the paddle to bounce the ball up
         and break the blocks.
       </p>
-      <p>If you miss the ball, your score and the blocks will reset.</p>
+      <p>
+        You can choose different levels of difficulty from beginer to god. With
+        each level the speed of the ball will increase.
+      </p>
+      <p>
+        You will get 3 balls/chances to bread all the blocks. If you miss the
+        ball three times you loose the game.
+      </p>
       <button id="close-btn" class="btn">Close</button>
     </div>
     <div class="background hidden"></div>
     <form class="start-game-card center">
       <div class="congo hidden">
-        <p class="congo-para">Congo 🎉✨🎊 You WON!</p>
+        <p class="congo-para hidden" id="congo-para">Congo 🎉✨🎊 You WON!</p>
+        <p class="congo-para hidden" id="lost-para">
+          Opps! You are out of balls. Better luck next time.
+        </p>
         <button id="play-again-btn" class="start-game-btn">Play again</button>
       </div>
       <div class="content">

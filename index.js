@@ -11,18 +11,26 @@ const congo = document.querySelector('.congo');
 const background = document.querySelector('.background');
 const content = document.querySelector('.content');
 const selectedLevel = document.getElementById('selected-level');
+const menuBtn = document.getElementById('menu-btn');
 
 let ballSpeed = parseInt(selectedLevel.value);
 
 let score = 0;
 let highscore = 0;
+let lostCount = 0;
 let nameOfPlayer = 'Buttface';
 
 const brickRowCount = 9;
 const brickColumnCount = 5;
 
+// music
+let brickMusic = document.getElementById('brick-music');
+let paddleMusic = document.getElementById('paddle-music');
+let lostMusic = document.getElementById('lost-music');
+
 // Create ball props
 let ball;
+let noOfBalls = 2;
 
 // Create paddle props
 const paddle = {
@@ -30,7 +38,7 @@ const paddle = {
   y: canvas.height - 20,
   w: 100,
   h: 10,
-  speed: 8,
+  speed: 10,
   dx: 0,
 };
 
@@ -69,6 +77,17 @@ if (getStoredName === null) {
   welcomeEl.innerHTML = `Welcome back, ${getStoredName[0].name}!`;
 }
 
+// music playerfunction play() {
+function playBrickMusic() {
+  brickMusic.play();
+}
+function playPaddleMusic() {
+  paddleMusic.play();
+}
+function playLostMusic() {
+  lostMusic.play();
+}
+
 // Draw ball on canvas
 function drawBall() {
   ctx.beginPath();
@@ -92,6 +111,7 @@ function drawPlayerInfo() {
   ctx.font = '14px Arial';
   ctx.fillStyle = 'hsla(355, 100%, 69%, 0.8)';
   ctx.fillText(`Score: ${score}`, canvas.width - 100, 30);
+  ctx.fillText(`Balls Remaining: ${noOfBalls}`, canvas.width - 430, 30);
   ctx.fillText(`highscore: ${highscore}`, canvas.width - 250, 30);
   ctx.fillText(`Name: ${nameOfPlayer}`, canvas.width - 750, 30);
   ctx.fill();
@@ -146,6 +166,7 @@ function moveBall() {
     ball.y + ball.size > paddle.y
   ) {
     ball.dy = -ball.speed;
+    playPaddleMusic();
   }
 
   // brick collision
@@ -160,7 +181,7 @@ function moveBall() {
         ) {
           ball.dy *= -1;
           brick.visible = false;
-
+          playBrickMusic();
           increaseScore();
         }
       }
@@ -169,14 +190,29 @@ function moveBall() {
 
   // Hit bottom wall - Lose
   if (ball.y + ball.size > canvas.height) {
-    showAllBricks();
+    playLostMusic();
     highscore = score > highscore ? score : highscore;
     player[0] = {
       name: nameOfPlayer,
       highscore: highscore,
     };
     localStorage.setItem('player', JSON.stringify(player));
-    score = 0;
+    lostCount++;
+    noOfBalls--;
+    if (noOfBalls < 0) {
+      startGameCard.classList.remove('hidden');
+      congo.classList.remove('hidden');
+      document.getElementById('lost-para').classList.remove('hidden');
+      background.classList.remove('hidden');
+      content.classList.add('hidden');
+      paddleMusic.stop();
+      brickMusic.stop();
+      lostMusic.stop();
+    }
+    if (lostCount > 2) {
+      showAllBricks();
+      score = 0;
+    }
   }
 }
 
@@ -189,8 +225,12 @@ function increaseScore() {
   if (score === 45) {
     startGameCard.classList.remove('hidden');
     congo.classList.remove('hidden');
+    document.getElementById('congo-para').classList.remove('hidden');
     background.classList.remove('hidden');
     content.classList.add('hidden');
+    paddleMusic.stop();
+    brickMusic.stop();
+    lostMusic.stop();
   }
 }
 
@@ -297,6 +337,10 @@ function keyUp(e) {
 }
 
 playAgainBtn.addEventListener('click', () => {
+  location.reload();
+});
+
+menuBtn.addEventListener('click', () => {
   location.reload();
 });
 
