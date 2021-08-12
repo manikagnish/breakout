@@ -193,8 +193,8 @@ function update() {
 
 startGameBtn.addEventListener('click', e => {
   e.preventDefault();
-  if (playerName.textContent === '') {
-    alert("You did not enter a name so your default name is 'Butface'");
+  if (playerName.value === '') {
+    alert("You did not enter a name so your default name is 'Buttface'");
   }
   startGameCard.classList.add('hidden');
   setTimeout(update, 2000);
