@@ -26,12 +26,21 @@
       <p>If you miss the ball, your score and the blocks will reset.</p>
       <button id="close-btn" class="btn">Close</button>
     </div>
+    <div class="background hidden"></div>
     <form class="start-game-card center">
-      <div class="hidden welcome-el"></div>
-      <label class="hidden" id="name-label"
-        >Name: <input type="text" id="name" class="name-input" required
-      /></label>
-      <button class="start-game-btn">Start the game!</button>
+      <div class="congo hidden">
+        <p class="congo-para">Congo 🎉✨🎊 You WON!</p>
+        <button id="play-again-btn" class="start-game-btn">Play again</button>
+      </div>
+      <div class="content">
+        <div class="hidden welcome-el"></div>
+        <label class="hidden" id="name-label"
+          >Name: <input type="text" id="name" class="name-input" required
+        /></label>
+        <button class="start-game-btn" id="start-game-btn">
+          Start the game!
+        </button>
+      </div>
     </form>
     <div id="loading" class="center loading"></div>
     <canvas id="canvas" width="800" height="600"> </canvas>

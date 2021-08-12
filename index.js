@@ -3,9 +3,13 @@ const closeBtn = document.getElementById('close-btn');
 const rules = document.getElementById('rules');
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
-const startGameBtn = document.querySelector('.start-game-btn');
+const startGameBtn = document.getElementById('start-game-btn');
 const startGameCard = document.querySelector('.start-game-card');
 const playerName = document.getElementById('name');
+const playAgainBtn = document.getElementById('play-again-btn');
+const congo = document.querySelector('.congo');
+const background = document.querySelector('.background');
+const content = document.querySelector('.content');
 
 let score = 0;
 let highscore = 0;
@@ -57,13 +61,16 @@ for (let i = 0; i < brickRowCount; i++) {
 
 const nameLabel = document.getElementById('name-label');
 const welcomeEl = document.querySelector('.welcome-el');
-const getStoredName = localStorage.getItem('PlayerName');
+
+const player = [];
+
+const getStoredName = JSON.parse(localStorage.getItem(`player`));
 
 if (getStoredName === null) {
   nameLabel.classList.remove('hidden');
 } else {
   welcomeEl.classList.remove('hidden');
-  welcomeEl.innerHTML = `Welcome back, ${getStoredName}!`;
+  welcomeEl.innerHTML = `Welcome back, ${getStoredName[0].name}!`;
 }
 
 // Draw ball on canvas
@@ -87,7 +94,7 @@ function drawPaddle() {
 // draw score on canvas
 function drawPlayerInfo() {
   ctx.font = '14px Arial';
-  ctx.fillStyle = 'steelblue';
+  ctx.fillStyle = '#32B399';
   ctx.fillText(`Score: ${score}`, canvas.width - 100, 30);
   ctx.fillText(`highscore: ${highscore}`, canvas.width - 250, 30);
   ctx.fillText(`Name: ${nameOfPlayer}`, canvas.width - 750, 30);
@@ -167,6 +174,12 @@ function moveBall() {
   // Hit bottom wall - Lose
   if (ball.y + ball.size > canvas.height) {
     showAllBricks();
+    highscore = score > highscore ? score : highscore;
+    player[0] = {
+      name: nameOfPlayer,
+      highscore: highscore,
+    };
+    localStorage.setItem('player', JSON.stringify(player));
     score = 0;
   }
 }
@@ -176,6 +189,12 @@ function increaseScore() {
   score++;
   if (score % (brickRowCount * brickRowCount) === 0) {
     showAllBricks();
+  }
+  if (score === 45) {
+    startGameCard.classList.remove('hidden');
+    congo.classList.remove('hidden');
+    background.classList.remove('hidden');
+    content.classList.add('hidden');
   }
 }
 
@@ -215,10 +234,15 @@ startGameBtn.addEventListener('click', e => {
   }
   if (playerName.value !== '') {
     nameOfPlayer = playerName.value;
-    localStorage.setItem('PlayerName', nameOfPlayer);
+    player.push({
+      name: nameOfPlayer,
+      highscore: highscore,
+    });
+    localStorage.setItem('player', JSON.stringify(player));
   }
   if (getStoredName !== null) {
-    nameOfPlayer = getStoredName;
+    nameOfPlayer = getStoredName[0].name;
+    highscore = getStoredName[0].highscore;
   }
 
   startGameCard.classList.add('hidden');
@@ -261,6 +285,10 @@ function keyUp(e) {
     paddle.dx = 0;
   }
 }
+
+playAgainBtn.addEventListener('click', () => {
+  location.reload();
+});
 
 // keyboard Event handlers
 document.addEventListener('keydown', keyDown);
