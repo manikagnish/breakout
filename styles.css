@@ -8,6 +8,8 @@
   --clr-black: hsl(0, 0%, 10%);
   --clr-black-light: hsl(0, 0%, 13%);
   --clr-black-lighter: hsl(0, 0%, 20%);
+  --clr-grey: hsl(0, 1%, 63%);
+  --clr-grey-light: hsl(0, 1%, 83%);
 }
 
 * {
@@ -24,7 +26,7 @@ html {
 body {
   /* for text */
   font-size: 1.6rem;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: var(--clr-white);
 
   /* for background */
@@ -114,4 +116,70 @@ canvas {
 
 .rules.show {
   transform: translateX(0);
+}
+
+.start-game-card {
+  background: var(--clr-white);
+  height: 30rem;
+  width: 50rem;
+  padding: 7rem 5rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--clr-black);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+label {
+  font-size: 1.8rem;
+  width: 100%;
+}
+.name-input {
+  font-size: 1.8rem;
+  border: 0;
+  border-bottom: 1px solid var(--clr-grey-light);
+  margin-bottom: 4rem;
+  width: 80%;
+  outline: 0;
+  color: var(--clr-grey);
+  padding: 0 0.5rem;
+}
+
+.start-game-btn {
+  background-color: var(--clr-background);
+  border: 0;
+  padding: 3rem 4rem;
+  border-radius: 10px;
+  color: var(--clr-white);
+  font-weight: bold;
+  font-size: 1.8rem;
+  transition: all 0.3s;
+}
+
+.start-game-btn:focus {
+  outline: 0;
+}
+
+.start-game-btn:active {
+  transform: scale(0.98);
+}
+
+.loading {
+  font-size: 4rem;
+  color: var(--clr-background);
+  font-weight: bold;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999999999;
+}
+
+.hidden {
+  display: none;
 }

@@ -1,8 +1,11 @@
-const rulesBtn = document.getElementById("rules-btn");
-const closeBtn = document.getElementById("close-btn");
-const rules = document.getElementById("rules");
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
+const rulesBtn = document.getElementById('rules-btn');
+const closeBtn = document.getElementById('close-btn');
+const rules = document.getElementById('rules');
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const startGameBtn = document.querySelector('.start-game-btn');
+const startGameCard = document.querySelector('.start-game-card');
+const playerName = document.getElementById('name');
 
 let score = 0;
 
@@ -23,7 +26,7 @@ const ball = {
 const paddle = {
   x: canvas.width / 2 - 40,
   y: canvas.height - 20,
-  w: 80,
+  w: 100,
   h: 10,
   speed: 8,
   dx: 0,
@@ -54,7 +57,7 @@ for (let i = 0; i < brickRowCount; i++) {
 function drawBall() {
   ctx.beginPath();
   ctx.arc(ball.x, ball.y, ball.size, 0, Math.PI * 2);
-  ctx.fillStyle = "hsl(355, 91%, 55%)";
+  ctx.fillStyle = 'hsl(355, 91%, 55%)';
   ctx.fill();
   ctx.closePath();
 }
@@ -63,24 +66,24 @@ function drawBall() {
 function drawPaddle() {
   ctx.beginPath();
   ctx.rect(paddle.x, paddle.y, paddle.w, paddle.h);
-  ctx.fillStyle = "hsl(355, 91%, 55%)";
+  ctx.fillStyle = 'hsl(355, 91%, 55%)';
   ctx.fill();
   ctx.closePath();
 }
 
 // draw score on canvas
 function drawScore() {
-  ctx.font = "20px Arial";
+  ctx.font = '20px Arial';
   ctx.fillText(`Score: ${score}`, canvas.width - 100, 30);
 }
 
 // draw bricks on canvas
 function drawBricks() {
-  bricks.forEach((column) => {
-    column.forEach((brick) => {
+  bricks.forEach(column => {
+    column.forEach(brick => {
       ctx.beginPath();
       ctx.rect(brick.x, brick.y, brick.w, brick.h);
-      ctx.fillStyle = brick.visible ? "hsl(355, 91%, 55%)" : "transparent";
+      ctx.fillStyle = brick.visible ? 'hsl(355, 91%, 55%)' : 'transparent';
       ctx.fill();
       ctx.closePath();
     });
@@ -126,8 +129,8 @@ function moveBall() {
   }
 
   // brick collision
-  bricks.forEach((column) => {
-    column.forEach((brick) => {
+  bricks.forEach(column => {
+    column.forEach(brick => {
       if (brick.visible) {
         if (
           ball.x - ball.size > brick.x &&
@@ -161,8 +164,8 @@ function increaseScore() {
 
 // Make all bricks appear
 function showAllBricks() {
-  bricks.forEach((column) => {
-    column.forEach((brick) => (brick.visible = true));
+  bricks.forEach(column => {
+    column.forEach(brick => (brick.visible = true));
   });
 }
 
@@ -188,13 +191,36 @@ function update() {
   requestAnimationFrame(update);
 }
 
-update();
+startGameBtn.addEventListener('click', e => {
+  e.preventDefault();
+  if (playerName.textContent === '') {
+    alert("You did not enter a name so your default name is 'Butface'");
+  }
+  startGameCard.classList.add('hidden');
+  setTimeout(update, 2000);
+  function dot1() {
+    document.getElementById('loading').innerHTML = `Starting.`;
+  }
+  function dot2() {
+    document.getElementById('loading').innerHTML = `Starting..`;
+  }
+  function dot3() {
+    document.getElementById('loading').innerHTML = `Starting...`;
+  }
+  setTimeout(dot1, 100);
+  setTimeout(dot2, 900);
+  setTimeout(dot3, 1700);
+
+  setTimeout(function () {
+    document.getElementById('loading').innerHTML = '';
+  }, 2000);
+});
 
 // keydown Event
 function keyDown(e) {
-  if (e.key === "Right" || e.key === "ArrowRight") {
+  if (e.key === 'Right' || e.key === 'ArrowRight') {
     paddle.dx = paddle.speed;
-  } else if (e.key === "Left" || e.key === "ArrowLeft") {
+  } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
     paddle.dx = -paddle.speed;
   }
 }
@@ -202,24 +228,24 @@ function keyDown(e) {
 // keyup event
 function keyUp(e) {
   if (
-    e.key === "Right" ||
-    e.key === "ArrowRight" ||
-    e.key === "Left" ||
-    e.key === "ArrowLeft"
+    e.key === 'Right' ||
+    e.key === 'ArrowRight' ||
+    e.key === 'Left' ||
+    e.key === 'ArrowLeft'
   ) {
     paddle.dx = 0;
   }
 }
 
 // keyboard Event handlers
-document.addEventListener("keydown", keyDown);
-document.addEventListener("keyup", keyUp);
+document.addEventListener('keydown', keyDown);
+document.addEventListener('keyup', keyUp);
 
 // Rules and close event handlers
-rulesBtn.addEventListener("click", () => {
-  rules.classList.add("show");
+rulesBtn.addEventListener('click', () => {
+  rules.classList.add('show');
 });
 
-closeBtn.addEventListener("click", () => {
-  rules.classList.remove("show");
+closeBtn.addEventListener('click', () => {
+  rules.classList.remove('show');
 });

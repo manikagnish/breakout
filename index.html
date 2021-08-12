@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Breakoutttt</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <script src="index.js" defer></script>
   </head>
   <body>
@@ -20,6 +26,13 @@
       <p>If you miss the ball, your score and the blocks will reset.</p>
       <button id="close-btn" class="btn">Close</button>
     </div>
-    <canvas id="canvas" width="800" height="600"></canvas>
+    <form class="start-game-card center">
+      <label
+        >Name: <input type="text" id="name" class="name-input" required
+      /></label>
+      <button class="start-game-btn">Start the game!</button>
+    </form>
+    <div id="loading" class="center loading"></div>
+    <canvas id="canvas" width="800" height="600"> </canvas>
   </body>
 </html>
