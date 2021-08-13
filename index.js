@@ -1,7 +1,7 @@
 if (window.innerWidth < 900) {
   document.querySelector(
     'body'
-  ).innerHTML = `<p>Open on desktop for best experience.</p> <p>OR</p> <p></p></p>Maximize the screen and refresh if already on desktop.<p> Mobile version in works.</p>`;
+  ).innerHTML = `<div class="center">Open on desktop for best experience. <br>OR <br>Maximize the screen and refresh if already on desktop.<br> Mobile version in work.</div>`;
 } else {
   const rulesBtn = document.getElementById('rules-btn');
   const closeBtn = document.getElementById('close-btn');
