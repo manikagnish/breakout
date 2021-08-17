@@ -82,6 +82,8 @@ if (window.innerWidth < 900) {
     welcomeEl.innerHTML = `Welcome back, ${getStoredName[0].name}!`;
   }
 
+  // ------------------------------------ FUNCTIONS ------------------------------------
+
   // music playerfunction play() {
   function playBrickMusic() {
     brickMusic.play();
@@ -268,6 +270,29 @@ if (window.innerWidth < 900) {
     requestAnimationFrame(update);
   }
 
+  // keydown Event
+  function keyDown(e) {
+    if (e.key === 'Right' || e.key === 'ArrowRight') {
+      paddle.dx = paddle.speed;
+    } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
+      paddle.dx = -paddle.speed;
+    }
+  }
+
+  // keyup event
+  function keyUp(e) {
+    if (
+      e.key === 'Right' ||
+      e.key === 'ArrowRight' ||
+      e.key === 'Left' ||
+      e.key === 'ArrowLeft'
+    ) {
+      paddle.dx = 0;
+    }
+  }
+
+  // ------------------------------------ EVENT LISTNERS ------------------------------------
+
   startGameBtn.addEventListener('click', e => {
     e.preventDefault();
     if (playerName.value === '' && getStoredName === null) {
@@ -285,6 +310,8 @@ if (window.innerWidth < 900) {
       nameOfPlayer = getStoredName[0].name;
       highscore = getStoredName[0].highscore;
     }
+
+    menuBtn.classList.remove('hidden');
 
     startGameCard.classList.add('hidden');
 
@@ -319,27 +346,6 @@ if (window.innerWidth < 900) {
     };
     highscore = 0;
   });
-
-  // keydown Event
-  function keyDown(e) {
-    if (e.key === 'Right' || e.key === 'ArrowRight') {
-      paddle.dx = paddle.speed;
-    } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
-      paddle.dx = -paddle.speed;
-    }
-  }
-
-  // keyup event
-  function keyUp(e) {
-    if (
-      e.key === 'Right' ||
-      e.key === 'ArrowRight' ||
-      e.key === 'Left' ||
-      e.key === 'ArrowLeft'
-    ) {
-      paddle.dx = 0;
-    }
-  }
 
   playAgainBtn.addEventListener('click', () => {
     location.reload();
