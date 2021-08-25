@@ -72,8 +72,10 @@ if (window.innerWidth < 900) {
   const welcomeEl = document.querySelector('.welcome-el');
 
   const player = [];
+  let level = 5;
 
   const getStoredName = JSON.parse(localStorage.getItem(`player`));
+  const getStoredLevel = JSON.parse(localStorage.getItem(`level`));
 
   if (getStoredName === null) {
     nameLabel.classList.remove('hidden');
@@ -293,6 +295,20 @@ if (window.innerWidth < 900) {
 
   // ------------------------------------ EVENT LISTNERS ------------------------------------
 
+  if (localStorage.getItem('level')) {
+    selectedLevel.value = localStorage.getItem('level');
+    for (let i = 1; i < selectedLevel.options.length; i++) {
+      if (
+        selectedLevel.options[i].value ===
+        JSON.parse(localStorage.getItem('level'))
+      ) {
+        let attr = document.createAttribute('selected');
+        selectedLevel.options[i].setAttributeNode(attr);
+        console.log('value of the option matched');
+      }
+    }
+  }
+
   startGameBtn.addEventListener('click', e => {
     e.preventDefault();
     if (playerName.value === '' && getStoredName === null) {
@@ -332,9 +348,7 @@ if (window.innerWidth < 900) {
     setTimeout(function () {
       document.getElementById('loading').innerHTML = '';
     }, 2500);
-  });
 
-  selectedLevel.addEventListener('click', () => {
     ballSpeed = parseInt(selectedLevel.value);
     ball = {
       x: canvas.width / 2,
@@ -345,6 +359,25 @@ if (window.innerWidth < 900) {
       dy: -4,
     };
     highscore = 0;
+
+    if (localStorage.getItem('level')) {
+      selectedLevel.value = localStorage.getItem('level');
+      for (let i = 1; i < selectedLevel.options.length; i++) {
+        if (
+          selectedLevel.options[i].value ===
+          JSON.parse(localStorage.getItem('level'))
+        ) {
+          let attr = document.createAttribute('selected');
+          selectedLevel.options[i].setAttributeNode(attr);
+          console.log('value of the option matched');
+        }
+      }
+    }
+  });
+
+  selectedLevel.addEventListener('change', e => {
+    let currentLevel = e.target.value;
+    localStorage.setItem('level', JSON.stringify(currentLevel));
   });
 
   playAgainBtn.addEventListener('click', () => {
