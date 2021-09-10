@@ -61,6 +61,14 @@ h2 {
   margin-bottom: 1rem;
 }
 
+p {
+  margin-bottom: 1rem;
+}
+
+p:last-of-type {
+  margin-bottom: 2rem;
+}
+
 canvas {
   background-color: var(--clr-canvas);
   backdrop-filter: saturate(180%) blur(2rem);
