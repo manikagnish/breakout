@@ -252,6 +252,10 @@ label {
   transform: scale(0.98);
 }
 
+.play-again-lost-btn {
+  background-color: var(--clr-black);
+}
+
 .loading {
   font-size: 4rem;
   color: var(--clr-background);
@@ -296,6 +300,16 @@ label {
 
 .choose-level {
   color: var(--clr-grey-light);
+}
+
+.loss-overlay {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99999999999;
+  background-color: rgb(44, 39, 39);
 }
 
 .hidden {

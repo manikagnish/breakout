@@ -24,6 +24,12 @@
     <audio id="lost-music">
       <source src="sounds/gameover.mp3" type="audio/mpeg" />
     </audio>
+    <audio id="game-over-music">
+      <source src="sounds/Youre Not Really Fine.mp3" type="audio/mpeg" />
+    </audio>
+
+    <div class="loss-overlay hidden"></div>
+
     <h1>Breakout!</h1>
     <button id="rules-btn" class="btn rules-btn">Show Rules</button>
     <button id="menu-btn" class="btn-2 menu-btn hidden">
@@ -52,7 +58,9 @@
         <p class="congo-para hidden" id="lost-para">
           Oops! You are out of balls. Better luck next time.
         </p>
-        <button id="play-again-btn" class="start-game-btn">Play again</button>
+        <button id="play-again-btn" class="start-game-btn play-again-lost-btn">
+          Play again
+        </button>
       </div>
       <div class="content">
         <div class="hidden welcome-el"></div>

@@ -17,6 +17,7 @@ if (window.innerWidth < 900) {
   const content = document.querySelector('.content');
   const selectedLevel = document.getElementById('selected-level');
   const menuBtn = document.getElementById('menu-btn');
+  const lossOverlay = document.querySelector('.loss-overlay');
 
   let ballSpeed = parseInt(selectedLevel.value);
 
@@ -32,6 +33,7 @@ if (window.innerWidth < 900) {
   let brickMusic = document.getElementById('brick-music');
   let paddleMusic = document.getElementById('paddle-music');
   let lostMusic = document.getElementById('lost-music');
+  let gameOverMusic = document.getElementById('game-over-music');
 
   // Create ball props
   let ball;
@@ -95,6 +97,9 @@ if (window.innerWidth < 900) {
   }
   function playLostMusic() {
     lostMusic.play();
+  }
+  function playGameOverMusic() {
+    gameOverMusic.play();
   }
 
   // Draw ball on canvas
@@ -214,6 +219,9 @@ if (window.innerWidth < 900) {
         document.getElementById('lost-para').classList.remove('hidden');
         background.classList.remove('hidden');
         content.classList.add('hidden');
+        lossOverlay.classList.remove('hidden');
+        playGameOverMusic();
+
         paddleMusic.muted();
         brickMusic.muted();
         lostMusic.muted();
