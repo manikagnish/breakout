@@ -4,8 +4,10 @@ if (window.innerWidth < 900) {
   ).innerHTML = `<div class="center">Open on desktop for best experience. <br>OR <br>Maximize the screen and refresh if already on desktop.<br> Mobile version in work.</div>`;
 } else {
   const rulesBtn = document.getElementById('rules-btn');
-  const closeBtn = document.getElementById('close-btn');
+  const playerInfoBtn = document.getElementById('player-info-btn');
+  const closeBtn = document.querySelectorAll('.close-btn');
   const rules = document.getElementById('rules');
+  const info = document.getElementById('info');
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d');
   const startGameBtn = document.getElementById('start-game-btn');
@@ -405,7 +407,15 @@ if (window.innerWidth < 900) {
     rules.classList.add('show');
   });
 
-  closeBtn.addEventListener('click', () => {
+  playerInfoBtn.addEventListener('click', () => {
+    info.classList.add('show');
+  });
+
+  closeBtn[0].addEventListener('click', () => {
     rules.classList.remove('show');
+  });
+
+  closeBtn[1].addEventListener('click', () => {
+    info.classList.remove('show');
   });
 }

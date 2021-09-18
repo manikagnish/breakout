@@ -32,6 +32,9 @@
 
     <h1>Breakout!</h1>
     <button id="rules-btn" class="btn rules-btn">Show Rules</button>
+    <button id="player-info-btn" class="btn player-info-btn">
+      Player info
+    </button>
     <button id="menu-btn" class="btn-2 menu-btn hidden">
       back to menu &#8594;
     </button>
@@ -49,7 +52,22 @@
         You will get 3 balls/chances to break all the blocks. If you miss the
         ball three times you lose the game.
       </p>
-      <button id="close-btn" class="btn">Close</button>
+      <button class="close-btn btn">Close</button>
+    </div>
+    <div id="info" class="rules">
+      <h2>Player Info</h2>
+      <p class="info-para">name: <span id="info-name">john doe</span></p>
+      <p class="info-para">
+        games played: <span id="info-games-played">5</span>
+      </p>
+      <p class="info-para">high score:</p>
+      <ul>
+        <li>beginner: <span id="info-beginner-highscore">30</span></li>
+        <li>intermediate: <span id="info-intermediate-highscore">10</span></li>
+        <li>advanced: <span id="info-advanced-highscore">0</span></li>
+        <li>god: <span id="info-god-highscore">0</span></li>
+      </ul>
+      <button class="close-btn btn">Close</button>
     </div>
     <div class="background hidden"></div>
     <form class="start-game-card center">

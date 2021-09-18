@@ -59,14 +59,24 @@ h1 {
 
 h2 {
   margin-bottom: 1rem;
+  text-decoration: underline;
 }
 
 p {
   margin-bottom: 1rem;
 }
 
-p:last-of-type {
-  margin-bottom: 2rem;
+.info-para {
+  font-weight: bold;
+}
+
+.info-para span {
+  font-weight: normal;
+}
+
+li {
+  list-style-type: none;
+  font-size: 1.4rem;
 }
 
 canvas {
@@ -102,6 +112,14 @@ canvas {
   position: absolute;
   top: 3rem;
   left: 3rem;
+  width: 12rem;
+}
+
+.player-info-btn {
+  position: absolute;
+  top: 8rem;
+  left: 3rem;
+  width: 12rem;
 }
 
 .menu-btn {
@@ -131,8 +149,9 @@ canvas {
   transform: translateX(2.5px);
 }
 
-#close-btn {
-  margin-top: 5px;
+.close-btn {
+  display: inline-block;
+  margin-top: 2.5rem;
 }
 
 .rules {
