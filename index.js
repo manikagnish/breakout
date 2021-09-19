@@ -227,10 +227,7 @@ if (window.innerWidth < 900) {
 
     // Hit bottom wall - Lose
     if (ball.y + ball.size > canvas.height) {
-      console.log('hit the bottom wall');
       if (ballSpeed === 5) {
-        console.log('inside beginner');
-        highscoreBeginner = getStoredName[0].highscoreBeginner;
         highscoreBeginner =
           score > highscoreBeginner ? score : highscoreBeginner;
         playerScoresHighscore.textContent = highscoreBeginner;
@@ -275,7 +272,6 @@ if (window.innerWidth < 900) {
 
   // game over function
   function gameOver() {
-    console.log('gameOver called');
     playLostMusic();
 
     player[0] = {
