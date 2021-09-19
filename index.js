@@ -38,6 +38,8 @@ if (window.innerWidth < 900) {
   );
   const infoGodHighscore = document.getElementById('info-god-highscore');
 
+  let bugFixer = 0;
+
   let gameCounter = 0;
   let highscoreBeginner = 0;
   let highscoreIntermediate = 0;
@@ -228,46 +230,53 @@ if (window.innerWidth < 900) {
     // Hit bottom wall - Lose
     if (ball.y + ball.size > canvas.height) {
       if (ballSpeed === 5) {
-        highscoreBeginner = getStoredName[0].highscoreBeginner;
+        if (gameCounter > 1) {
+          highscoreBeginner = getStoredName[0].highscoreBeginner;
+          highscoreIntermediate = getStoredName[0].highscoreIntermediate;
+          highscoreAdvanced = getStoredName[0].highscoreAdvanced;
+          highscoreGod = getStoredName[0].highscoreGod;
+        }
         highscoreBeginner =
           score > highscoreBeginner ? score : highscoreBeginner;
         playerScoresHighscore.textContent = highscoreBeginner;
 
-        highscoreIntermediate = getStoredName[0].highscoreIntermediate;
-        highscoreAdvanced = getStoredName[0].highscoreAdvanced;
-        highscoreGod = getStoredName[0].highscoreGod;
-
         gameOver();
       } else if (ballSpeed === 8) {
-        highscoreIntermediate = getStoredName[0].highscoreIntermediate;
+        if (gameCounter > 1) {
+          highscoreIntermediate = getStoredName[0].highscoreIntermediate;
+          highscoreBeginner = getStoredName[0].highscoreBeginner;
+          highscoreAdvanced = getStoredName[0].highscoreAdvanced;
+          highscoreGod = getStoredName[0].highscoreGod;
+        }
+
         highscoreIntermediate =
           score > highscoreIntermediate ? score : highscoreIntermediate;
         playerScoresHighscore.textContent = highscoreIntermediate;
 
-        highscoreBeginner = getStoredName[0].highscoreBeginner;
-        highscoreAdvanced = getStoredName[0].highscoreAdvanced;
-        highscoreGod = getStoredName[0].highscoreGod;
-
         gameOver();
       } else if (ballSpeed === 13) {
-        highscoreAdvanced = getStoredName[0].highscoreAdvanced;
+        if (gameCounter > 1) {
+          highscoreAdvanced = getStoredName[0].highscoreAdvanced;
+          highscoreBeginner = getStoredName[0].highscoreBeginner;
+          highscoreIntermediate = getStoredName[0].highscoreIntermediate;
+          highscoreGod = getStoredName[0].highscoreGod;
+        }
+
         highscoreAdvanced =
           score > highscoreAdvanced ? score : highscoreAdvanced;
         playerScoresHighscore.textContent = highscoreAdvanced;
 
-        highscoreBeginner = getStoredName[0].highscoreBeginner;
-        highscoreIntermediate = getStoredName[0].highscoreIntermediate;
-        highscoreGod = getStoredName[0].highscoreGod;
-
         gameOver();
       } else if (ballSpeed === 18) {
-        highscoreGod = getStoredName[0].highscoreGod;
+        if (gameCounter > 1) {
+          highscoreGod = getStoredName[0].highscoreGod;
+          highscoreBeginner = getStoredName[0].highscoreBeginner;
+          highscoreIntermediate = getStoredName[0].highscoreIntermediate;
+          highscoreAdvanced = getStoredName[0].highscoreAdvanced;
+        }
+
         highscoreGod = score > highscoreGod ? score : highscoreGod;
         playerScoresHighscore.textContent = highscoreGod;
-
-        highscoreBeginner = getStoredName[0].highscoreBeginner;
-        highscoreIntermediate = getStoredName[0].highscoreIntermediate;
-        highscoreAdvanced = getStoredName[0].highscoreAdvanced;
 
         gameOver();
       }
@@ -380,6 +389,18 @@ if (window.innerWidth < 900) {
     }
   }
 
+  function storePlayer() {
+    player.push({
+      name: nameOfPlayer,
+      highscoreBeginner: highscoreBeginner,
+      highscoreIntermediate: highscoreIntermediate,
+      highscoreAdvanced: highscoreAdvanced,
+      highscoreGod: highscoreGod,
+      gamesPlayed: gameCounter,
+    });
+    localStorage.setItem('player', JSON.stringify(player));
+  }
+
   // ------------------------------------ EVENT LISTNERS ------------------------------------
 
   if (localStorage.getItem('level')) {
@@ -398,27 +419,25 @@ if (window.innerWidth < 900) {
 
   startGameBtn.addEventListener('click', e => {
     e.preventDefault();
-
+    bugFixer++;
+    console.log(bugFixer);
     gameCounter++;
     if (playerName.value === '' && getStoredName === null) {
+      storePlayer();
       alert("You did not enter a name so your default name is 'Buttface'");
     }
     if (playerName.value !== '') {
       nameOfPlayer = playerName.value;
-      player.push({
-        name: nameOfPlayer,
-        highscoreBeginner: highscoreBeginner,
-        highscoreIntermediate: highscoreIntermediate,
-        highscoreAdvanced: highscoreAdvanced,
-        highscoreGod: highscoreGod,
-        gamesPlayed: gameCounter,
-      });
-      localStorage.setItem('player', JSON.stringify(player));
+      storePlayer();
     }
     if (getStoredName !== null) {
       nameOfPlayer = getStoredName[0].name;
-      highscore = getStoredName[0].highscore;
       gameCounter = getStoredName[0].gamesPlayed + 1;
+      // highscoreBeginner = getStoredName[0].highscoreBeginner;
+      // highscoreIntermediate = getStoredName[0].highscoreIntermediate;
+      // highscoreAdvanced = getStoredName[0].highscoreAdvanced;
+      // highscoreGod = getStoredName[0].highscoreGod;
+      // storePlayer();
     }
 
     menuBtn.classList.remove('hidden');
