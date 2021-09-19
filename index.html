@@ -54,9 +54,9 @@
       </p>
       <button class="close-btn btn">Close</button>
     </div>
-    <div id="info" class="rules">
+    <div id="info" class="rules info-width">
       <h2>Player Info</h2>
-      <p class="info-para">name: <span id="info-name">john doe</span></p>
+      <p class="info-para">name: <span id="info-name">manikagnish999</span></p>
       <p class="info-para">
         games played: <span id="info-games-played">5</span>
       </p>
@@ -73,12 +73,14 @@
     <form class="start-game-card center">
       <div class="congo hidden">
         <p class="congo-para hidden" id="congo-para">Congo 🎉✨🎊 You WON!</p>
-        <p class="congo-para hidden" id="lost-para">
+        <p class="hidden" id="lost-para">
           Oops! You are out of balls. Better luck next time.
+          <div class="player-scores hidden">
+            <p>Score: <span id="player-scores-score"></span></p>
+            <p>HighScore: <span id="player-scores-highscore"></span></p>
+          </div>
         </p>
-        <button id="play-again-btn" class="start-game-btn play-again-lost-btn">
-          Play again
-        </button>
+        <button id="play-again-btn" class="start-game-btn">Play again</button>
       </div>
       <div class="content">
         <div class="hidden welcome-el"></div>

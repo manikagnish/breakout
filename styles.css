@@ -172,6 +172,10 @@ canvas {
   transform: translateX(0);
 }
 
+.info-width {
+  width: fit-content;
+}
+
 .start-game-card {
   background: var(--clr-white);
   height: 30rem;
@@ -220,9 +224,9 @@ canvas {
   text-align: center;
 }
 
-/* .congo-para {
-  
-} */
+.congo-para {
+  color: var(--clr-background);
+}
 
 label {
   font-size: 1.8rem;
@@ -271,7 +275,7 @@ label {
   transform: scale(0.98);
 }
 
-.play-again-lost-btn {
+.start-game-btn.play-again-lost-btn {
   background-color: var(--clr-black);
 }
 

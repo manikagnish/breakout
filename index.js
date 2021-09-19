@@ -20,6 +20,16 @@ if (window.innerWidth < 900) {
   const selectedLevel = document.getElementById('selected-level');
   const menuBtn = document.getElementById('menu-btn');
   const lossOverlay = document.querySelector('.loss-overlay');
+  const playerScores = document.querySelector('.player-scores');
+  const playerScoresScore = document.getElementById('player-scores-score');
+  const playerScoresHighscore = document.querySelector(
+    '.player-scores-highscore'
+  );
+
+  let highscoreBeginner = 0;
+  let highscoreIntermediate = 0;
+  let highscoreAdvanced = 0;
+  let highscoreGod = 0;
 
   let ballSpeed = parseInt(selectedLevel.value);
 
@@ -124,12 +134,10 @@ if (window.innerWidth < 900) {
 
   // draw score on canvas
   function drawPlayerInfo() {
-    ctx.font = '14px Arial';
+    ctx.font = '20px Arial';
     ctx.fillStyle = 'hsla(355, 100%, 69%, 0.8)';
-    ctx.fillText(`Score: ${score}`, canvas.width - 100, 30);
-    ctx.fillText(`Balls Remaining: ${noOfBalls}`, canvas.width - 430, 30);
-    ctx.fillText(`highscore: ${highscore}`, canvas.width - 250, 30);
-    ctx.fillText(`Name: ${nameOfPlayer}`, canvas.width - 750, 30);
+    ctx.fillText(`Score: ${score}`, canvas.width - 130, 30);
+    ctx.fillText(`Balls Remaining: ${noOfBalls}`, canvas.width - 750, 30);
     ctx.fill();
   }
 
@@ -222,6 +230,9 @@ if (window.innerWidth < 900) {
         background.classList.remove('hidden');
         content.classList.add('hidden');
         lossOverlay.classList.remove('hidden');
+        playerScores.classList.remove('hidden');
+        playAgainBtn.classList.add('play-again-lost-btn');
+        playerScoresScore.textContent = score;
         playGameOverMusic();
 
         paddleMusic.muted();
