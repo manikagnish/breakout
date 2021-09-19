@@ -25,7 +25,10 @@ if (window.innerWidth < 900) {
   const playerScoresHighscore = document.querySelector(
     '.player-scores-highscore'
   );
+  const infoName = document.getElementById('info-name');
+  const infoGamesPlayed = document.getElementById('info-games-played');
 
+  let gameCounter = 0;
   let highscoreBeginner = 0;
   let highscoreIntermediate = 0;
   let highscoreAdvanced = 0;
@@ -219,6 +222,7 @@ if (window.innerWidth < 900) {
       player[0] = {
         name: nameOfPlayer,
         highscore: highscore,
+        gamesPlayed: gameCounter,
       };
       localStorage.setItem('player', JSON.stringify(player));
       lostCount++;
@@ -332,6 +336,8 @@ if (window.innerWidth < 900) {
 
   startGameBtn.addEventListener('click', e => {
     e.preventDefault();
+
+    gameCounter++;
     if (playerName.value === '' && getStoredName === null) {
       alert("You did not enter a name so your default name is 'Buttface'");
     }
@@ -340,12 +346,14 @@ if (window.innerWidth < 900) {
       player.push({
         name: nameOfPlayer,
         highscore: highscore,
+        gamesPlayed: gameCounter,
       });
       localStorage.setItem('player', JSON.stringify(player));
     }
     if (getStoredName !== null) {
       nameOfPlayer = getStoredName[0].name;
       highscore = getStoredName[0].highscore;
+      gameCounter = getStoredName[0].gamesPlayed + 1;
     }
 
     menuBtn.classList.remove('hidden');
@@ -428,5 +436,12 @@ if (window.innerWidth < 900) {
 
   closeBtn[1].addEventListener('click', () => {
     info.classList.remove('show');
+  });
+
+  playerInfoBtn.addEventListener('click', () => {
+    nameOfPlayer = getStoredName[0].name;
+    infoName.textContent = nameOfPlayer;
+    gameCounter = getStoredName[0].gamesPlayed;
+    infoGamesPlayed.textContent = gameCounter;
   });
 }
