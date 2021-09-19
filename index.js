@@ -23,10 +23,20 @@ if (window.innerWidth < 900) {
   const playerScores = document.querySelector('.player-scores');
   const playerScoresScore = document.getElementById('player-scores-score');
   const playerScoresHighscore = document.querySelector(
-    '.player-scores-highscore'
+    '#player-scores-highscore'
   );
   const infoName = document.getElementById('info-name');
   const infoGamesPlayed = document.getElementById('info-games-played');
+  const infoBeginnerHighscore = document.getElementById(
+    'info-beginner-highscore'
+  );
+  const infoIntermediateHighscore = document.getElementById(
+    'info-intermediate-highscore'
+  );
+  const infoAdvancedHighscore = document.getElementById(
+    'info-advanced-highscore'
+  );
+  const infoGodHighscore = document.getElementById('info-god-highscore');
 
   let gameCounter = 0;
   let highscoreBeginner = 0;
@@ -217,36 +227,88 @@ if (window.innerWidth < 900) {
 
     // Hit bottom wall - Lose
     if (ball.y + ball.size > canvas.height) {
-      playLostMusic();
-      highscore = score > highscore ? score : highscore;
-      player[0] = {
-        name: nameOfPlayer,
-        highscore: highscore,
-        gamesPlayed: gameCounter,
-      };
-      localStorage.setItem('player', JSON.stringify(player));
-      lostCount++;
-      noOfBalls--;
-      if (noOfBalls < 0) {
-        startGameCard.classList.remove('hidden');
-        congo.classList.remove('hidden');
-        document.getElementById('lost-para').classList.remove('hidden');
-        background.classList.remove('hidden');
-        content.classList.add('hidden');
-        lossOverlay.classList.remove('hidden');
-        playerScores.classList.remove('hidden');
-        playAgainBtn.classList.add('play-again-lost-btn');
-        playerScoresScore.textContent = score;
-        playGameOverMusic();
+      console.log('hit the bottom wall');
+      if (ballSpeed === 5) {
+        console.log('inside beginner');
+        highscoreBeginner = getStoredName[0].highscoreBeginner;
+        highscoreBeginner =
+          score > highscoreBeginner ? score : highscoreBeginner;
+        playerScoresHighscore.textContent = highscoreBeginner;
 
-        paddleMusic.muted();
-        brickMusic.muted();
-        lostMusic.muted();
+        highscoreIntermediate = getStoredName[0].highscoreIntermediate;
+        highscoreAdvanced = getStoredName[0].highscoreAdvanced;
+        highscoreGod = getStoredName[0].highscoreGod;
+
+        gameOver();
+      } else if (ballSpeed === 8) {
+        highscoreIntermediate =
+          score > highscoreIntermediate ? score : highscoreIntermediate;
+        playerScoresHighscore.textContent = highscoreIntermediate;
+
+        highscoreBeginner = getStoredName[0].highscoreBeginner;
+        highscoreAdvanced = getStoredName[0].highscoreAdvanced;
+        highscoreGod = getStoredName[0].highscoreGod;
+
+        gameOver();
+      } else if (ballSpeed === 13) {
+        highscoreAdvanced =
+          score > highscoreAdvanced ? score : highscoreAdvanced;
+        playerScoresHighscore.textContent = highscoreAdvanced;
+
+        highscoreBeginner = getStoredName[0].highscoreBeginner;
+        highscoreIntermediate = getStoredName[0].highscoreIntermediate;
+        highscoreGod = getStoredName[0].highscoreGod;
+
+        gameOver();
+      } else if (ballSpeed === 18) {
+        highscoreGod = score > highscoreGod ? score : highscoreGod;
+        playerScoresHighscore.textContent = highscoreGod;
+
+        highscoreBeginner = getStoredName[0].highscoreBeginner;
+        highscoreIntermediate = getStoredName[0].highscoreIntermediate;
+        highscoreAdvanced = getStoredName[0].highscoreAdvanced;
+
+        gameOver();
       }
-      if (lostCount > 2) {
-        showAllBricks();
-        score = 0;
-      }
+    }
+  }
+
+  // game over function
+  function gameOver() {
+    console.log('gameOver called');
+    playLostMusic();
+
+    player[0] = {
+      name: nameOfPlayer,
+      highscoreBeginner: highscoreBeginner,
+      highscoreIntermediate: highscoreIntermediate,
+      highscoreAdvanced: highscoreAdvanced,
+      highscoreGod: highscoreGod,
+      gamesPlayed: gameCounter,
+    };
+    localStorage.setItem('player', JSON.stringify(player));
+
+    lostCount++;
+    noOfBalls--;
+    if (noOfBalls < 0) {
+      startGameCard.classList.remove('hidden');
+      congo.classList.remove('hidden');
+      document.getElementById('lost-para').classList.remove('hidden');
+      background.classList.remove('hidden');
+      content.classList.add('hidden');
+      lossOverlay.classList.remove('hidden');
+      playerScores.classList.remove('hidden');
+      playAgainBtn.classList.add('play-again-lost-btn');
+      playerScoresScore.textContent = score;
+      playGameOverMusic();
+
+      paddleMusic.muted();
+      brickMusic.muted();
+      lostMusic.muted();
+    }
+    if (lostCount > 2) {
+      showAllBricks();
+      score = 0;
     }
   }
 
@@ -345,7 +407,10 @@ if (window.innerWidth < 900) {
       nameOfPlayer = playerName.value;
       player.push({
         name: nameOfPlayer,
-        highscore: highscore,
+        highscoreBeginner: highscoreBeginner,
+        highscoreIntermediate: highscoreIntermediate,
+        highscoreAdvanced: highscoreAdvanced,
+        highscoreGod: highscoreGod,
         gamesPlayed: gameCounter,
       });
       localStorage.setItem('player', JSON.stringify(player));
@@ -443,5 +508,10 @@ if (window.innerWidth < 900) {
     infoName.textContent = nameOfPlayer;
     gameCounter = getStoredName[0].gamesPlayed;
     infoGamesPlayed.textContent = gameCounter;
+    infoBeginnerHighscore.textContent = getStoredName[0].highscoreBeginner;
+    infoIntermediateHighscore.textContent =
+      getStoredName[0].highscoreIntermediate;
+    infoAdvancedHighscore.textContent = getStoredName[0].highscoreAdvanced;
+    infoGodHighscore.textContent = getStoredName[0].highscoreGod;
   });
 }
