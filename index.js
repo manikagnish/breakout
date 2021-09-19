@@ -228,6 +228,7 @@ if (window.innerWidth < 900) {
     // Hit bottom wall - Lose
     if (ball.y + ball.size > canvas.height) {
       if (ballSpeed === 5) {
+        highscoreBeginner = getStoredName[0].highscoreBeginner;
         highscoreBeginner =
           score > highscoreBeginner ? score : highscoreBeginner;
         playerScoresHighscore.textContent = highscoreBeginner;
@@ -238,6 +239,7 @@ if (window.innerWidth < 900) {
 
         gameOver();
       } else if (ballSpeed === 8) {
+        highscoreIntermediate = getStoredName[0].highscoreIntermediate;
         highscoreIntermediate =
           score > highscoreIntermediate ? score : highscoreIntermediate;
         playerScoresHighscore.textContent = highscoreIntermediate;
@@ -248,6 +250,7 @@ if (window.innerWidth < 900) {
 
         gameOver();
       } else if (ballSpeed === 13) {
+        highscoreAdvanced = getStoredName[0].highscoreAdvanced;
         highscoreAdvanced =
           score > highscoreAdvanced ? score : highscoreAdvanced;
         playerScoresHighscore.textContent = highscoreAdvanced;
@@ -258,6 +261,7 @@ if (window.innerWidth < 900) {
 
         gameOver();
       } else if (ballSpeed === 18) {
+        highscoreGod = getStoredName[0].highscoreGod;
         highscoreGod = score > highscoreGod ? score : highscoreGod;
         playerScoresHighscore.textContent = highscoreGod;
 
