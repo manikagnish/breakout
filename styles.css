@@ -338,3 +338,45 @@ label {
 .hidden {
   display: none;
 }
+
+@media (max-width: 500px) {
+  body {
+    padding-bottom: 1em;
+  }
+
+  h1 {
+    font-size: 3rem;
+    padding-top: 1rem;
+    margin-bottom: 0;
+  }
+
+  .start-game-card {
+    background: var(--clr-white);
+    height: 30rem;
+    width: 30rem;
+    padding: 2em 1em;
+    top: 65%;
+    z-index: 9999999;
+  }
+
+  .loss-overlay {
+    z-index: 999999;
+  }
+
+  .rules-btn {
+    position: initial;
+    width: 12em;
+    margin-bottom: 4px;
+  }
+
+  .player-info-btn {
+    position: initial;
+    width: 12em;
+    margin-bottom: 1em;
+  }
+
+  .rules {
+    width: 100%;
+    z-index: 99999999;
+  }
+}
