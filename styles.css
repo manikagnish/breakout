@@ -341,7 +341,6 @@ label {
 @media (max-width: 500px) {
   body {
     padding-bottom: 1em;
-    justify-content: space-between;
   }
 
   h1 {
