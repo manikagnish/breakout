@@ -377,14 +377,16 @@ if (window.innerWidth < 900) {
   }
 
   // keydown Event
-  function leftMouseDown() {
+  function leftMouseDown(e) {
     console.log('left clicked/pressed');
-    paddle.dx = paddle.speed;
+    paddle.dx = -paddle.speed;
+    e.preventDefault();
   }
 
-  function rightMouseDown() {
+  function rightMouseDown(e) {
     console.log('right clicked/pressed');
-    paddle.dx = -paddle.speed;
+    paddle.dx = paddle.speed;
+    e.preventDefault();
   }
 
   // keyup event
@@ -502,8 +504,8 @@ if (window.innerWidth < 900) {
   // keyboard Event handlers
   left.onmousedown = leftMouseDown;
   right.onmousedown = rightMouseDown;
-  left.onmouseup = mouseUp;
-  right.onmouseup = mouseUp;
+  left.onmouseup = setInterval(mouseUp, 300);
+  right.onmouseup = setInterval(mouseUp, 300);
 
   // Rules and close event handlers
   rulesBtn.addEventListener('click', () => {

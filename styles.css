@@ -373,6 +373,7 @@ label {
 
   .loss-overlay {
     z-index: 999999;
+    height: 110vh;
   }
 
   .rules-btn {
