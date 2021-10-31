@@ -373,7 +373,7 @@ label {
 
   .loss-overlay {
     z-index: 999999;
-    height: 110vh;
+    height: 115vh;
   }
 
   .rules-btn {
@@ -391,5 +391,9 @@ label {
   .rules {
     width: 100%;
     z-index: 99999999;
+  }
+
+  .move-btn-container {
+    padding-top: 1.5em;
   }
 }
