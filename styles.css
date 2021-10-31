@@ -341,6 +341,7 @@ label {
 @media (max-width: 500px) {
   body {
     padding-bottom: 1em;
+    justify-content: space-between;
   }
 
   h1 {
@@ -350,10 +351,10 @@ label {
 
   .start-game-card {
     background: var(--clr-white);
-    height: 30rem;
-    width: 30rem;
-    padding: 2em 1em;
-    top: 65%;
+    height: 40rem;
+    width: 31rem;
+    padding: 0 1em;
+    top: 59%;
     z-index: 9999999;
   }
 
