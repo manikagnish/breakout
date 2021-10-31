@@ -1,8 +1,15 @@
 if (window.innerWidth < 900) {
   document.querySelector('.canvas-desktop').classList.add('hidden');
   document.querySelector('body').innerHTML += `
-  <canvas id="canvas-mobile" width="300" height="400"> </canvas>
+  <canvas id="canvas-mobile" width="300" height="500"> </canvas>
+  <div class="move-btn-container">
+    <button id="left" class="move-btn">left</button>
+    <button id="right" class="move-btn">right</button>
+  </div>
   `;
+
+  const left = document.getElementById('left');
+  const right = document.getElementById('right');
   const rulesBtn = document.getElementById('rules-btn');
   const playerInfoBtn = document.getElementById('player-info-btn');
   const closeBtn = document.querySelectorAll('.close-btn');
@@ -370,24 +377,20 @@ if (window.innerWidth < 900) {
   }
 
   // keydown Event
-  function keyDown(e) {
-    if (e.key === 'Right' || e.key === 'ArrowRight') {
-      paddle.dx = paddle.speed;
-    } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
-      paddle.dx = -paddle.speed;
-    }
+  function leftMouseDown() {
+    console.log('left clicked/pressed');
+    paddle.dx = paddle.speed;
+  }
+
+  function rightMouseDown() {
+    console.log('right clicked/pressed');
+    paddle.dx = -paddle.speed;
   }
 
   // keyup event
-  function keyUp(e) {
-    if (
-      e.key === 'Right' ||
-      e.key === 'ArrowRight' ||
-      e.key === 'Left' ||
-      e.key === 'ArrowLeft'
-    ) {
-      paddle.dx = 0;
-    }
+  function mouseUp() {
+    paddle.dx = 0;
+    console.log('mouse up');
   }
 
   function storePlayer() {
@@ -413,7 +416,6 @@ if (window.innerWidth < 900) {
       ) {
         let attr = document.createAttribute('selected');
         selectedLevel.options[i].setAttributeNode(attr);
-        console.log('value of the option matched');
       }
     }
   }
@@ -422,8 +424,8 @@ if (window.innerWidth < 900) {
     e.preventDefault();
     rulesBtn.classList.add('hidden');
     playerInfoBtn.classList.add('hidden');
+    startGameCard.classList.remove('home');
     bugFixer++;
-    console.log(bugFixer);
     gameCounter++;
     if (playerName.value === '' && getStoredName === null) {
       storePlayer();
@@ -483,7 +485,6 @@ if (window.innerWidth < 900) {
         ) {
           let attr = document.createAttribute('selected');
           selectedLevel.options[i].setAttributeNode(attr);
-          console.log('value of the option matched');
         }
       }
     }
@@ -499,8 +500,10 @@ if (window.innerWidth < 900) {
   });
 
   // keyboard Event handlers
-  document.addEventListener('keydown', keyDown);
-  document.addEventListener('keyup', keyUp);
+  left.onmousedown = leftMouseDown;
+  right.onmousedown = rightMouseDown;
+  left.onmouseup = mouseUp;
+  right.onmouseup = mouseUp;
 
   // Rules and close event handlers
   rulesBtn.addEventListener('click', () => {
@@ -940,7 +943,6 @@ if (window.innerWidth < 900) {
       ) {
         let attr = document.createAttribute('selected');
         selectedLevel.options[i].setAttributeNode(attr);
-        console.log('value of the option matched');
       }
     }
   }
@@ -948,7 +950,6 @@ if (window.innerWidth < 900) {
   startGameBtn.addEventListener('click', e => {
     e.preventDefault();
     bugFixer++;
-    console.log(bugFixer);
     gameCounter++;
     if (playerName.value === '' && getStoredName === null) {
       storePlayer();
@@ -1010,7 +1011,6 @@ if (window.innerWidth < 900) {
         ) {
           let attr = document.createAttribute('selected');
           selectedLevel.options[i].setAttributeNode(attr);
-          console.log('value of the option matched');
         }
       }
     }

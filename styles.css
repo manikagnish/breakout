@@ -338,6 +338,15 @@ label {
   display: none;
 }
 
+.move-btn-container {
+  margin-top: 0.5em;
+}
+.move-btn {
+  padding: 0.5em 2em;
+  background: hsl(0, 0%, 10%);
+  color: #eee;
+}
+
 @media (max-width: 500px) {
   body {
     padding-bottom: 1em;
@@ -351,10 +360,15 @@ label {
   .start-game-card {
     background: var(--clr-white);
     height: 40rem;
-    width: 31rem;
+    width: 30rem;
     padding: 0 1em;
     top: 59%;
     z-index: 9999999;
+  }
+
+  .start-game-card.home {
+    background-color: transparent;
+    box-shadow: none;
   }
 
   .loss-overlay {
