@@ -3,8 +3,8 @@ if (window.innerWidth < 900) {
   document.querySelector('body').innerHTML += `
   <canvas id="canvas-mobile" width="300" height="500"> </canvas>
   <div class="move-btn-container">
-    <button id="left" class="move-btn">left</button>
-    <button id="right" class="move-btn">right</button>
+    <button id="left" class="move-btn" onmousedown="leftMouseDown()" onmouseup="mouseUp()" ontouchstart="leftMouseDown()" ontouchend="mouseUp()">left</button>
+    <button id="right" class="move-btn" onmousedown="rightMouseDown()" onmouseup="mouseUp()" ontouchstart="rightMouseDown()" ontouchend="mouseUp()">right</button>
   </div>
   `;
 
@@ -377,16 +377,12 @@ if (window.innerWidth < 900) {
   }
 
   // keydown Event
-  function leftMouseDown(e) {
-    console.log('left clicked/pressed');
+  function leftMouseDown() {
     paddle.dx = -paddle.speed;
-    e.preventDefault();
   }
 
-  function rightMouseDown(e) {
-    console.log('right clicked/pressed');
+  function rightMouseDown() {
     paddle.dx = paddle.speed;
-    e.preventDefault();
   }
 
   // keyup event
@@ -500,12 +496,6 @@ if (window.innerWidth < 900) {
   playAgainBtn.addEventListener('click', () => {
     location.reload();
   });
-
-  // keyboard Event handlers
-  left.onmousedown = leftMouseDown;
-  right.onmousedown = rightMouseDown;
-  left.onmouseup = setInterval(mouseUp, 300);
-  right.onmouseup = setInterval(mouseUp, 300);
 
   // Rules and close event handlers
   rulesBtn.addEventListener('click', () => {
