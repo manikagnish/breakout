@@ -157,7 +157,7 @@ canvas {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 99999;
+  z-index: 99999999;
   background-color: var(--clr-black-lighter);
   min-height: 100vh;
   width: 40rem;
@@ -289,7 +289,7 @@ label {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 9999999999;
+  z-index: 9999999;
   text-align: center;
 }
 
@@ -330,7 +330,7 @@ label {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 99999999999;
+  z-index: 9999999;
   background-color: var(--clr-black);
 }
 
@@ -345,8 +345,22 @@ label {
   padding: 0.5em 2em;
   background: hsl(0, 0%, 10%);
   color: #eee;
+  user-select: none; /* supported by Chrome and Opera */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
 }
 
+.move-btn:first-child {
+  margin-right: 2em;
+}
+
+@media (max-width: 380px) {
+  .rules {
+    width: 100%;
+  }
+}
 @media (max-width: 500px) {
   body {
     padding-bottom: 1em;
@@ -389,7 +403,6 @@ label {
   }
 
   .rules {
-    width: 100%;
     z-index: 99999999;
   }
 
