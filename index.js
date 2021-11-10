@@ -85,7 +85,7 @@ if (window.innerWidth < 900) {
   // Create brick props
   const brickInfo = {
     w: 42,
-    h: 10,
+    h: 13,
     padding: 6.5,
     offsetX: 9,
     offsetY: 50,
@@ -119,21 +119,8 @@ if (window.innerWidth < 900) {
     welcomeEl.innerHTML = `Welcome back, ${getStoredName[0].name}!`;
   }
 
-  rules.innerHTML = `
-  <h2>How To Play:</h2>
-      <p>
-        Press and hold the right or left button to move the paddle to bounce the ball up and break the blocks.
-      </p>
-      <p>
-        You can choose different levels of difficulty from beginner to god. With
-        each level, the speed of the ball will increase.
-      </p>
-      <p>
-        You will get 3 balls/chances to break all the blocks. If you miss hitting the
-        ball off the paddle three times you lose the game.
-      </p>
-      <button class="close-btn btn">Close</button>
-  `;
+  document.getElementById('rules-para-one').innerHTML =
+    'Press and hold the right or left button to move the paddle. Make the ball bounce on the paddle and hit the blocks to break them.';
 
   // ------------------------------------ FUNCTIONS ------------------------------------
 

@@ -353,7 +353,7 @@ label {
 }
 
 .move-btn:first-child {
-  margin-right: 2em;
+  margin-right: 4em;
 }
 
 @media (max-width: 380px) {
